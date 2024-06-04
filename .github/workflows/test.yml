@@ -1,0 +1,53 @@
+name: workflow
+
+on: [push, pull_request]
+    
+jobs:
+  set:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check
+      uses: actions/checkout@v4
+
+    - name: Setup
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Install 
+      run: npm install
+
+    - name: Build
+      run: npm run build
+
+    - name: Show AWS
+      run: aws --version
+
+    - name: The job has Succeded
+      if: ${{ succes() }}
+      run: echo "Success completed"
+      
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check
+      uses: actions/checkout@v4
+
+    - name: Setup
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: update 
+      run: npm update
+
+    - name: Cache
+      run: npm cache
+
+    - name: The job has Succeded
+      if: ${{ succes() }}
+      run: echo "Success"
+
+      
