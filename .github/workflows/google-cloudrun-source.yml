@@ -69,6 +69,8 @@ jobs:
       - name: Google Auth
         id: auth
         uses: 'google-github-actions/auth@v0'
+        with:
+          credentialss_json: '${{secrets.SA_CREDS}}1'
 
       - name: Deploy to Cloud Run
         id: deploy
