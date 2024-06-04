@@ -25,7 +25,7 @@ jobs:
       run: aws --version
 
     - name: The job has Succeded
-      if: ${{ succes() }}
+      if: ${{ success() }}
       run: echo "Success completed"
       
   update:
@@ -47,7 +47,7 @@ jobs:
       run: npm cache
 
     - name: The job has Succeded
-      if: ${{ succes() }}
+      if: ${{ success() }}
       run: echo "Success"
 
       
